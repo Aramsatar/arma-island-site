@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARMA Island — your coding agents, in the notch</title>
+<meta name="description" content="Claude Code is working. You're somewhere else. ARMA Island puts every session in the black space above your screen — what it's doing, what it needs, and one click back to the exact terminal tab. $15 once. No account, no cloud.">
+<link rel="icon" href="assets/logo.png">
+<meta property="og:title" content="ARMA Island — your coding agents, in the notch">
+<meta property="og:description" content="Every Claude Code session in your notch. Answer permissions without leaving what you're doing. $15 once, no account.">
+<meta property="og:image" content="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080a; --panel:#101014; --fg:#f4f4f6; --dim:#9a9aa6;
+  --line:rgba(255,255,255,.09); --accent:#ff7a2f; --accent2:#ffb27a;
+  --blue:#5b9dff; --green:#3ddc84;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:400 16px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+.center{text-align:center}
+h1,h2,h3{letter-spacing:-.028em; margin:0; font-weight:800}
+h2{font-size:clamp(26px,3.6vw,40px); max-width:19ch; margin-inline:auto; line-height:1.12}
+.sub{color:var(--dim); font-size:clamp(15px,1.5vw,17.5px); max-width:60ch; margin:14px auto 0}
+.sec-eyebrow{
+  font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:14px;
+}
+section{padding:clamp(64px,9vw,116px) 0; position:relative}
+
+/* nav */
+nav{
+  position:sticky; top:0; z-index:50; backdrop-filter:blur(14px);
+  background:rgba(8,8,10,.82); border-bottom:1px solid var(--line);
+}
+.navin{max-width:var(--maxw); margin:0 auto; padding:11px 24px; display:flex; align-items:center; gap:22px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.02em; text-decoration:none}
+.brand img{width:28px; height:28px; border-radius:7px; display:block}
+.navlinks{display:flex; gap:22px; margin-left:auto; font-size:14px; color:var(--dim)}
+.navlinks a{text-decoration:none}
+.navlinks a:hover{color:var(--fg)}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border-radius:11px; font-weight:700; text-decoration:none; white-space:nowrap;
+  padding:12px 20px; font-size:15px; border:1px solid transparent; cursor:pointer;
+  transition:transform .12s ease, filter .12s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(180deg,var(--accent),#e8621b); color:#1a0d04;
+  box-shadow:0 8px 26px -10px rgba(255,122,47,.7)}
+.btn-primary:hover{filter:brightness(1.07)}
+.btn-ghost{background:rgba(255,255,255,.06); border-color:var(--line); color:var(--fg)}
+.btn-sm{padding:8px 15px; font-size:13.5px; border-radius:9px}
+
+/* hero */
+.hero{padding-top:clamp(44px,6vw,84px); padding-bottom:0}
+.eyebrow{
+  display:inline-flex; gap:9px; align-items:center; font-size:11.5px; font-weight:700;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--dim);
+  border:1px solid var(--line); border-radius:999px; padding:7px 15px; background:rgba(255,255,255,.02);
+}
+.eyebrow b{color:var(--accent)}
+.hero h1{font-size:clamp(38px,6.6vw,78px); line-height:1.02; margin:26px auto 0; max-width:15ch; font-weight:900}
+.grad{background:linear-gradient(100deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.cta{display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:30px}
+.price-note{color:var(--dim); font-size:13.5px}
+.price-note b{color:var(--fg)}
+.trust{margin-top:16px; font-size:12.5px; color:var(--dim)}
+
+/* the mac */
+.macwrap{position:relative; max-width:1000px; margin:clamp(38px,5vw,64px) auto 0}
+.macwrap::before{
+  content:""; position:absolute; inset:-8% -14% 12%; z-index:0; pointer-events:none;
+  background:radial-gradient(closest-side, rgba(255,122,47,.15), transparent 72%);
+}
+.mac{position:relative; z-index:1}
+/* Screen surface of assets/macbook-pro-14.svg: x 124.5–1091.5, y 18–646 of a
+   1216×735 viewBox. Percentages derived from that, so the overlay sits exactly
+   inside the glass rather than being eyeballed. */
+.screen{position:absolute; left:10.238%; top:2.449%; width:79.523%; height:85.442%; overflow:hidden; border-radius:2px}
+.desktop{position:absolute; inset:0; background:linear-gradient(150deg,#2a1c3d,#101528 55%,#0a0a12)}
+.notchbar{position:absolute; top:0; left:0; right:0; height:5.6%; background:#000}
+.card{
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:62%; background:#0a0a0c; border:1px solid rgba(255,255,255,.1);
+  border-top:none; border-radius:0 0 18px 18px; padding:10px 12px 12px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.9);
+}
+.cardtop{display:flex; align-items:center; gap:7px; font-size:9px; font-weight:800; color:#fff}
+.cardtop img{width:13px; height:13px; border-radius:3px}
+.cardtop .sp{margin-left:auto; display:flex; gap:5px; color:rgba(255,255,255,.35)}
+.hero-face{
+  width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; margin-top:8px;
+  border:1px solid rgba(255,255,255,.07); background:#000; display:block;
+}
+.rowlabel{font-size:7.5px; font-weight:800; letter-spacing:.13em; color:rgba(255,255,255,.4); margin:9px 0 5px}
+.arow{background:rgba(255,255,255,.045); border-radius:7px; padding:6px 8px; margin-bottom:5px}
+.arow .t{display:flex; align-items:center; gap:5px; font-size:8.5px; font-weight:700}
+.dot{width:5px; height:5px; border-radius:50%; background:var(--green); flex:none}
+.dot.wait{background:var(--accent)}
+.arow .d{font-size:7.5px; color:rgba(255,255,255,.5); margin-top:2px}
+.answer{display:flex; gap:4px; margin-top:5px}
+.chip{font-size:7px; font-weight:800; padding:2.5px 7px; border-radius:99px}
+.chip.y{background:var(--green); color:#04240f}
+.chip.n{background:rgba(255,255,255,.14); color:#fff}
+
+/* the face grid — big on purpose */
+.moods{display:flex; flex-wrap:wrap; justify-content:center; gap:22px; margin:46px auto 0; max-width:1180px}
+.mood{margin:0; width:264px; max-width:calc(50% - 11px)}
+.mood img{
+  width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:18px; display:block;
+  border:1px solid var(--line); background:#000;
+}
+.mood figcaption{margin-top:12px; display:flex; flex-direction:column; gap:3px; line-height:1.35; text-align:left}
+.mood b{font-size:15px}
+.mood span{font-size:12.5px; color:var(--dim)}
+.mood-note{margin:36px auto 0; max-width:58ch; font-size:13.5px; color:var(--dim)}
+
+/* the loop */
+.verbs{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:46px; text-align:left}
+.verb{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px}
+.verb .n{font-size:11px; font-weight:900; color:var(--accent); letter-spacing:.1em}
+.verb h3{font-size:17px; margin:8px 0 7px}
+.verb p{margin:0; font-size:13.5px; color:var(--dim); line-height:1.55}
+
+/* features */
+.feats{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:44px; text-align:left}
+.feat{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px}
+.feat h3{font-size:16px; margin:0 0 7px}
+.feat p{margin:0; font-size:13.5px; color:var(--dim); line-height:1.55}
+.feat .ic{font-size:19px; margin-bottom:11px; display:block}
+
+/* facts */
+.facts{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:44px}
+.fact{border:1px solid var(--line); border-radius:16px; padding:22px; background:var(--panel)}
+.fact .big{font-size:clamp(24px,3vw,34px); font-weight:900; letter-spacing:-.03em}
+.fact .cap{font-size:12.5px; color:var(--dim); margin-top:6px; line-height:1.45}
+
+/* pricing */
+.pricebox{
+  max-width:440px; margin:44px auto 0; background:var(--panel); border:1px solid var(--line);
+  border-radius:22px; padding:32px 28px; text-align:center;
+}
+.amt{font-size:56px; font-weight:900; letter-spacing:-.04em; line-height:1}
+.amt s{font-size:26px; color:var(--dim); font-weight:700; margin-right:10px}
+.plist{list-style:none; padding:0; margin:22px 0; text-align:left; font-size:14px}
+.plist li{padding:7px 0 7px 26px; position:relative; color:var(--dim)}
+.plist li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:900}
+.plist li b{color:var(--fg); font-weight:600}
+.finestamp{font-size:12.5px; color:var(--dim); margin-top:14px}
+
+/* mission */
+.mission{max-width:66ch; margin:0 auto; text-align:left}
+.mission p{color:var(--dim); font-size:16px}
+.mission p b{color:var(--fg); font-weight:600}
+
+footer{border-top:1px solid var(--line); padding:56px 0 44px; text-align:center}
+.fnav{display:flex; gap:20px; justify-content:center; font-size:13.5px; color:var(--dim); margin-top:20px}
+.fnav a{text-decoration:none}
+.copy{font-size:12.5px; color:var(--dim); margin-top:22px}
+
+@media (max-width:980px){
+  .verbs{grid-template-columns:repeat(2,1fr)}
+  .feats{grid-template-columns:repeat(2,1fr)}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+}
+@media (max-width:620px){
+  .moods{gap:14px}
+  .mood{width:100%; max-width:340px}
+  .verbs,.feats{grid-template-columns:1fr}
+  .card{width:82%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="">ARMA Island</a>
+    <div class="navlinks">
+      <a href="#face">The face</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#quiet">Privacy</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="#pricing">Get it</a>
+  </div>
+</nav>
+
+<header id="top" class="hero center">
+  <div class="wrap">
+    <span class="eyebrow"><b>ARMA</b> · ISLAND · FOR MACOS</span>
+    <h1>Your coding agents, in the <span class="grad">notch</span>.</h1>
+    <p class="sub">Claude Code is working. You're somewhere else. ARMA Island puts every session in
+      the black space above your screen — what it's doing, what it needs, and one click back to the
+      exact terminal tab.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="ARMA-Island.zip" download>Download for Mac</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+      <span class="price-note"><b>$15</b> · one-time · 14-day free trial</span>
+    </div>
+    <p class="trust">Apple-notarized · Requires macOS 14 · 8 MB · No account, no cloud, no telemetry</p>
+
+    <div class="macwrap">
+      <div class="mac">
+        <img src="assets/macbook-pro-14.svg" alt="ARMA Island running in the notch of a MacBook Pro">
+        <div class="screen">
+          <div class="desktop"></div>
+          <div class="notchbar"></div>
+          <div class="card">
+            <div class="cardtop">
+              <img src="assets/logo.png" alt="">ARMA Island
+              <span class="sp">⚙ ✕</span>
+            </div>
+            <img class="hero-face" src="assets/face/waiting.png" alt="The island's face, waiting for your answer">
+            <div class="rowlabel">CODING AGENTS · 2</div>
+            <div class="arow">
+              <div class="t"><span class="dot wait"></span>arma-island · needs permission</div>
+              <div class="d">Bash · npm run build</div>
+              <div class="answer"><span class="chip y">Allow</span><span class="chip n">Deny</span></div>
+            </div>
+            <div class="arow">
+              <div class="t"><span class="dot"></span>iraq-truck-app · working</div>
+              <div class="d">Edit src/routes/orders.ts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="face">
+  <div class="wrap center">
+    <div class="sec-eyebrow">The face</div>
+    <h2>Glance up. You already know.</h2>
+    <p class="sub">She reacts to the load, not just to whether something is running. One agent looks
+      different from four — and an agent that needs an answer looks different from both. Every state
+      is an animation, not a status dot.</p>
+    <div class="moods">
+      <figure class="mood">
+        <img src="assets/face/sleeping.png" alt="Asleep — nothing is running" loading="lazy" width="264" height="198">
+        <figcaption><b>Sleeping</b><span>nothing running, you're away</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/resting.png" alt="Resting — quiet, you're at the machine" loading="lazy" width="264" height="198">
+        <figcaption><b>Resting</b><span>quiet, and you're here</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/working.png" alt="Working — one agent running" loading="lazy" width="264" height="198">
+        <figcaption><b>Working</b><span>one agent</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/busy.png" alt="Busy — two agents running" loading="lazy" width="264" height="198">
+        <figcaption><b>Busy</b><span>two agents</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/swamped.png" alt="Swamped — three or more agents running" loading="lazy" width="264" height="198">
+        <figcaption><b>Swamped</b><span>three or more</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/waiting.png" alt="Waiting — an agent is blocked on you" loading="lazy" width="264" height="198">
+        <figcaption><b>Waiting</b><span>one is blocked on you</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img src="assets/face/pleased.png" alt="Pleased — something just finished" loading="lazy" width="264" height="198">
+        <figcaption><b>Pleased</b><span>something just finished</span></figcaption>
+      </figure>
+    </div>
+    <p class="mood-note">Don't like her? Drop your own artwork into a folder and it replaces her, one
+      mood at a time — PNG, SVG or video. The folder is watched, so it changes while you're looking at it.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap center">
+    <div class="sec-eyebrow">The loop</div>
+    <h2>Four things, without leaving what you're doing.</h2>
+    <p class="sub">An agent that needs you and can't reach you is just a stopped agent.</p>
+    <div class="verbs">
+      <div class="verb">
+        <div class="n">01</div><h3>Watch</h3>
+        <p>Every session at a glance — the prompt you gave it, the file it's editing right now, its
+          task list, and how long it's been going.</p>
+      </div>
+      <div class="verb">
+        <div class="n">02</div><h3>Answer</h3>
+        <p>When Claude Code asks permission, the island opens itself and shows you what it wants to
+          run. Allow or Deny right there. It stays open until you decide.</p>
+      </div>
+      <div class="verb">
+        <div class="n">03</div><h3>Jump</h3>
+        <p>Click a session and land in the exact window and tab it's running in — iTerm, Terminal,
+          Ghostty, Cursor, VS Code.</p>
+      </div>
+      <div class="verb">
+        <div class="n">04</div><h3>Hear</h3>
+        <p>A sound when a run finishes. Pick it, or turn it off. You'll know a build ended from the
+          other side of the room.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="center">
+      <div class="sec-eyebrow">More than a monitor</div>
+      <h2>The notch was always wasted space.</h2>
+      <p class="sub">So it holds the rest of the small things you reach for all day.</p>
+    </div>
+    <div class="feats">
+      <div class="feat">
+        <span class="ic">🎵</span><h3>Now playing</h3>
+        <p>Spotify, Music and Chrome. Scrubber, transport, and a level meter — with the playhead run
+          from a local clock rather than by asking the player thirty times a second.</p>
+      </div>
+      <div class="feat">
+        <span class="ic">📋</span><h3>Clipboard</h3>
+        <p>Your recent copies, one click to put one back. It refuses to store anything an app marks
+          as a password or a secret.</p>
+      </div>
+      <div class="feat">
+        <span class="ic">🎨</span><h3>Make it yours</h3>
+        <p>Accent colour, motion, sound, and your own artwork for the face. Calm mode makes it
+          genuinely still, not merely slower.</p>
+      </div>
+      <div class="feat">
+        <span class="ic">🔋</span><h3>Quiet by design</h3>
+        <p>Nothing animates behind a locked screen, a sleeping display, or in Low Power Mode. The
+          video doesn't even start until the card is open.</p>
+      </div>
+      <div class="feat">
+        <span class="ic">⌨️</span><h3>No setup</h3>
+        <p>It installs its own Claude Code hook and merges into your settings without clobbering the
+          hooks you already have. Launch it and it's working.</p>
+      </div>
+      <div class="feat">
+        <span class="ic">🖥️</span><h3>No notch? Fine</h3>
+        <p>On a Mac without one it draws its own pill in the same place. Same island, same behaviour.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiet">
+  <div class="wrap center">
+    <div class="sec-eyebrow">Privacy</div>
+    <h2>There is nothing to breach.</h2>
+    <p class="sub">Not a policy — a property of how it's built. There is no networking code in the
+      app at all. It makes no requests and holds no sockets while running. There is no server for it
+      to talk to.</p>
+    <div class="facts">
+      <div class="fact"><div class="big">0</div><div class="cap">network connections, ever</div></div>
+      <div class="fact"><div class="big">0</div><div class="cap">accounts to create</div></div>
+      <div class="fact"><div class="big">Offline</div><div class="cap">licence check — it works on a plane</div></div>
+      <div class="fact"><div class="big">Local</div><div class="cap">sessions read from a folder on your disk</div></div>
+    </div>
+    <p class="mood-note">Your licence is verified with a signature, not a lookup. We don't learn that
+      you installed it, when you run it, or how you use it. <a href="privacy.html">Read the privacy page →</a></p>
+  </div>
+</section>
+
+<section id="mission">
+  <div class="wrap">
+    <div class="center"><div class="sec-eyebrow">Why</div>
+      <h2>Built by someone who kept losing the terminal.</h2></div>
+    <div class="mission" style="margin-top:34px">
+      <p>Agents changed the shape of a working day. You start something, go and think about something
+        else, and come back to find it finished twenty minutes ago — or worse, stopped four minutes in
+        because it wanted permission and nobody was watching.</p>
+      <p><b>The notch is the one part of the screen you always look at and never use.</b> It's above
+        every window, it's already black, and it's in your eyeline. That's the whole idea.</p>
+      <p>ARMA Island is a small, deliberate tool. It is not a platform. It has no account, no cloud,
+        and no plans to grow into one. <b>You buy it once and it keeps working.</b></p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap center">
+    <div class="sec-eyebrow">Pricing</div>
+    <h2>Buy it once.</h2>
+    <div class="pricebox">
+      <div class="amt"><s>$22</s>$15</div>
+      <ul class="plist">
+        <li><b>One-time purchase.</b> No subscription.</li>
+        <li><b>14-day free trial</b> — the full app, nothing withheld.</li>
+        <li>Apple-notarized, signed with a Developer ID.</li>
+        <li>Works on every Mac you own.</li>
+        <li>Licence verified offline. No account.</li>
+      </ul>
+      <a class="btn btn-primary" style="width:100%"
+         href="mailto:aramkolln@gmail.com?subject=ARMA%20Island%20licence&body=I%27d%20like%20to%20buy%20ARMA%20Island.%20My%20email%20for%20the%20licence%20key%3A">Buy — $15</a>
+      <p class="finestamp">Or <a href="ARMA-Island.zip" download>download the free trial</a> first —
+        it's the full app, and you don't need to talk to anyone.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap center">
+    <h2 style="max-width:none; font-size:clamp(23px,3.2vw,33px)">Stop tabbing around to find out if it finished.</h2>
+    <p class="sub" style="margin:14px auto 26px">One-time purchase. Free trial. Nothing to sign up for.</p>
+    <a class="btn btn-primary" href="ARMA-Island.zip" download>Download for Mac</a>
+    <div class="fnav"><a href="privacy.html">Privacy</a><a href="#pricing">Pricing</a><a href="#face">The face</a></div>
+    <p class="copy">ARMA Island · made in Kurdistan · macOS 14 or later</p>
+  </div>
+</footer>
+
+</body>
+</html>

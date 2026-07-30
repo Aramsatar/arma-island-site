@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy — ARMA Island</title>
+<style>
+:root{--bg:#0a0a0c;--fg:#f2f2f4;--dim:#9a9aa4;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:72px 24px 96px}
+h1{font-size:clamp(28px,5vw,40px);letter-spacing:-.02em;margin:0 0 8px}
+h2{font-size:19px;margin:40px 0 10px;letter-spacing:-.01em}
+p,li{color:var(--dim)}
+a{color:var(--fg)}
+.lede{font-size:18px;color:var(--fg);margin:0 0 8px}
+.date{font-size:13px;color:var(--dim);margin:0 0 40px}
+ul{padding-left:20px}
+.back{display:inline-block;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);
+  font-size:14px;color:var(--dim);text-decoration:none}
+</style></head><body><div class="wrap">
+
+<h1>Privacy</h1>
+<p class="lede">ARMA Island collects nothing, sends nothing, and has no account.</p>
+<p class="date">Last updated 30 July 2026</p>
+
+<p>That is not a promise about intent — it is a property of how the app is built. There is
+no networking code in it at all. It makes no requests, opens no connections, and holds no
+sockets while running. There is no server for it to talk to.</p>
+
+<h2>What it reads, and where that stays</h2>
+<ul>
+  <li><b>Agent sessions</b> — read from a folder on your own disk that Claude Code writes
+      to, at <code>~/Library/Application&nbsp;Support/ARMA&nbsp;Island/sessions/</code>.</li>
+  <li><b>Now playing</b> — asked of Spotify, Music or Chrome on your Mac, via Apple Events.</li>
+  <li><b>Clipboard history</b> — kept in a file on your Mac. Items a password manager marks
+      as concealed are skipped. You can clear it or switch it off.</li>
+</ul>
+<p>All of it stays on your machine. None of it is transmitted, because nothing in the app
+can transmit.</p>
+
+<h2>Your licence</h2>
+<p>Licence keys are verified offline using a signature. Activating one involves no network
+request, so we do not learn that you installed it, when you run it, or how you use it.
+The trade is deliberate: a check that phoned home would need a server, a server would need
+an account, and the promise above would be gone.</p>
+
+<h2>Analytics, telemetry, crash reports</h2>
+<p>None. There is no third-party SDK in the app.</p>
+
+<h2>If you email us</h2>
+<p>Buying a licence today means emailing us, so we will hold your email address in order to
+send you a key and honour it later. Nothing more, and it is not shared.</p>
+
+<h2>Changes</h2>
+<p>If this ever stops being true, this page changes first and the reason is stated plainly.</p>
+
+<a class="back" href="index.html">← ARMA Island</a>
+</div></body></html>
