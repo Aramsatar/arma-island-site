@@ -9,9 +9,11 @@
 <meta property="og:title" content="ARMA Island — your coding agents, in the notch">
 <meta property="og:description" content="Every Claude Code session in your notch. Answer permissions without leaving what you're doing. $15 once, no account.">
 <meta property="og:image" content="assets/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Inter is served from this site, not from Google. Loading it from
+     fonts.googleapis.com sent every visitor's IP address to Google before they
+     had consented to anything; that is the one thing on this page that has
+     produced actual GDPR fines. Same font, same files, no third party. -->
+<link href="assets/fonts/inter.css" rel="stylesheet">
 <style>
 :root{
   --bg:#08080a; --panel:#101014; --fg:#f4f4f6; --dim:#9a9aa6;
@@ -166,6 +168,8 @@ nav{
 .mission p b{color:var(--fg); font-weight:600}
 
 footer{border-top:1px solid var(--line); padding:56px 0 44px; text-align:center}
+.imprint{margin-top:14px; opacity:.72; line-height:1.7}
+.imprint a{color:inherit; text-decoration:underline; text-underline-offset:2px}
 .fnav{display:flex; gap:20px; justify-content:center; font-size:13.5px; color:var(--dim); margin-top:20px}
 .fnav a{text-decoration:none}
 .copy{font-size:12.5px; color:var(--dim); margin-top:22px}
@@ -422,7 +426,17 @@ footer{border-top:1px solid var(--line); padding:56px 0 44px; text-align:center}
     <p class="sub" style="margin:14px auto 26px">One-time purchase. Free trial. Nothing to sign up for.</p>
     <a class="btn btn-primary" href="ARMA-Island.zip" download>Download for Mac</a>
     <div class="fnav"><a href="privacy.html">Privacy</a><a href="#pricing">Pricing</a><a href="#face">The face</a></div>
-    <p class="copy">ARMA Island · made in Kurdistan · macOS 14 or later</p>
+    <p class="copy">ARMA Island · made in Kurdistan · Apple Silicon, macOS 14 or later</p>
+
+    <!-- Trader identity. EU consumer law requires the seller to be identified
+         by name and contact details before a purchase — this is the "imprint"
+         a European buyer expects to find, and its absence is a common
+         enforcement trigger for a small seller. Address and telephone are
+         still outstanding; see legal/00-READ-ME-FIRST.md in the app repo. -->
+    <p class="copy imprint">
+      Sold by <strong>Aram Satar</strong>, sole trader, Kurdistan Region, Iraq.<br>
+      Contact: <a href="mailto:aramkolln@gmail.com">aramkolln@gmail.com</a>
+    </p>
   </div>
 </footer>
 
