@@ -1,0 +1,7 @@
+# armaisland.app — crawl everything; there is nothing hidden here.
+# This file only became possible on 2026-08-02: crawlers read robots.txt at the
+# HOST ROOT only, and until the custom domain existed the site lived at a
+# GitHub Pages project path, where no robots.txt of ours could ever be served.
+User-agent: *
+Allow: /
+Sitemap: https://armaisland.app/sitemap.xml

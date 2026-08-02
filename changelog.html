@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog — ARMA Island</title>
+<meta name="description" content="What changed in each ARMA Island release — including the honest parts: the bug that burned CPU at rest, the media buttons that silently did nothing, and what was done about each.">
+<link rel="canonical" href="https://armaisland.app/changelog.html">
+<link rel="icon" href="/assets/logo.png" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ARMA Island">
+<meta property="og:url" content="https://armaisland.app/changelog.html">
+<meta property="og:title" content="Changelog — ARMA Island">
+<meta property="og:description" content="Every release, including the honest parts.">
+<meta property="og:image" content="https://armaisland.app/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#0a0a0c;--fg:#f2f2f4;--dim:#9a9aa4;--line:rgba(255,255,255,.1);--accent:#ff7a2f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:72px 24px 96px}
+h1{font-size:clamp(28px,5vw,40px);letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--dim);margin:0 0 48px}
+.rel{border-top:1px solid var(--line);padding:28px 0 8px}
+.rel h2{font-size:19px;margin:0 0 2px;letter-spacing:-.01em}
+.rel .date{color:var(--dim);font-size:13px;margin:0 0 12px}
+.rel p{color:var(--dim);margin:0 0 14px}
+.rel strong{color:var(--fg);font-weight:600}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.back{display:inline-block;margin-bottom:40px;font-size:14px}
+</style></head>
+<body><main class="wrap">
+<a class="back" href="/">← armaisland.app</a>
+<h1>Changelog</h1>
+<p class="sub">Every release, including the honest parts. Your copy shows its
+version in the island's settings, under Licence.</p>
+
+<section class="rel">
+  <h2>1.0.4</h2>
+  <p class="date">2 August 2026</p>
+  <p><strong>Idle CPU from 12.8% of a core to 0.7%.</strong> The island kept
+  animating when nothing was happening; now it genuinely rests. If your fans
+  had opinions about ARMA Island, this is the release that quiets them.</p>
+  <p><strong>Running the binary with <code>--help</code> now answers</strong>
+  instead of launching the app.</p>
+  <p>Coming in 1.0.5: a Help row in settings — report a problem from inside the
+  app, and grant the media-keys permission without needing music playing.</p>
+</section>
+
+<section class="rel">
+  <h2>1.0.2</h2>
+  <p class="date">1 August 2026</p>
+  <p><strong>The media buttons stopped pretending.</strong> Controlling Chrome
+  or YouTube Music needs macOS Accessibility permission, and macOS drops the
+  keypress silently without it — so the buttons looked alive and did nothing.
+  Now the app checks first, says exactly what is missing, and asks for it.
+  Spotify and Apple Music always worked and still need nothing.</p>
+</section>
+
+<section class="rel">
+  <h2>1.0.1</h2>
+  <p class="date">1 August 2026</p>
+  <p><strong>The album-art fetch is gone.</strong> Our privacy page said the app
+  holds no network connections; the app was fetching cover art from a CDN. We
+  fixed the app, not the wording — the code that could reach the network was
+  removed entirely. The app now makes no network connections at all.</p>
+</section>
+
+<section class="rel">
+  <h2>1.0.0</h2>
+  <p class="date">July 2026</p>
+  <p>First release. The island, the face, seven moods, agent session cards,
+  media controls, a 14-day trial and an offline licence.</p>
+</section>
+
+</main></body></html>

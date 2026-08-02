@@ -1,0 +1,8 @@
+# If you find a security problem in ARMA Island, tell us. The app makes no
+# network connections and holds no user accounts, so most classes of report
+# do not apply — but a licence-verification bypass, a signing problem in a
+# shipped build, or anything in this website is exactly what we want to hear.
+Contact: mailto:aramkolln@gmail.com
+Expires: 2027-08-02T00:00:00.000Z
+Preferred-Languages: en, ar, ckb
+Canonical: https://armaisland.app/.well-known/security.txt
